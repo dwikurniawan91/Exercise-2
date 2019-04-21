@@ -99,29 +99,29 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement) /*membuat object*/
 numberButtons.forEach(button => { /*menampilkan number di display ketika user menglik numberButton*/ 
     button.addEventListener('click',() => {
-        calculator.appendNumber(button.innerText)
+        calculator.appendNumber(button.innerText)/* memanggil fungsi appendNumber*/
         calculator.updateDisplay()
     })
 })
 
-operationButtons.forEach(button => {
+operationButtons.forEach(button => {/* memanggil fungsi delete*/
     button.addEventListener('click',() => {
         calculator.chooseOperation(button.innerText)
         calculator.updateDisplay()
     })
 })
 
-equalsButton.addEventListener('click', button => {
+equalsButton.addEventListener('click', button => {/* memanggil fungsi compute*/
     calculator.compute()
     calculator.updateDisplay()
 })
 
-allClearButton.addEventListener('click', button => {
+allClearButton.addEventListener('click', button => {/* memanggil fungsi clear*/
     calculator.clear()
     calculator.updateDisplay()
 })
 
-deleteButton.addEventListener('click', button => {
-    calculator.delete()
+deleteButton.addEventListener('click', button => { /* memanggil fungsi delete*/
+    calculator.delete() 
     calculator.updateDisplay()
 })
