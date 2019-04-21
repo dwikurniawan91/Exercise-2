@@ -16,23 +16,23 @@ delete() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
-appendNumber(number) {
-    if (number==='.' && this.currentOperand.includes('.')) return
-    this.currentOperand = this.currentOperand.toString() + number.toString()
+appendNumber(number) { /*Menambahkan number ke currentOperand ketika numberButton diclick*/
+    if (number==='.' && this.currentOperand.includes('.')) return /*user hanya boleh melakukan operrand titik '.' sekali*/
+    this.currentOperand = this.currentOperand.toString() + number.toString() /*Merubah currentOperand jadi string agar ketika user menklik number, currentOperand tidak melakukan penambahan melainkan concation*/
 
     }
 
-chooseOperation(operation){
+chooseOperation(operation){ /* aktifitas ketika user menklik operationButton*/
     if(this.currentOperand === '') return
     if(this.previousOperand !== '') {
         this.compute()
     }
     this.operation = operation
-    this.previousOperand = this.currentOperand
+    this.previousOperand = this.currentOperand /*Menset currentOperand ke previousOperand*/ 
     this.currentOperand =''
     }
 
-compute() {
+compute() { /*Melakukan komputasi ketika operationButton diklik*/
     let computation
     const prev = parseFloat(this.previousOperand)
     const current = parseFloat(this.currentOperand)
@@ -75,7 +75,7 @@ getDisplayNumber(number) {
     }
 }
 
-updateDisplay() {
+updateDisplay() { //update nilai yg ada di currentOperand dan previousOperand*/
     this.currentOperandTextElement.innerText = 
     this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
@@ -87,6 +87,7 @@ updateDisplay() {
     
 }
 }
+/*selecting button and element*/
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation')
 const equalsButton = document.querySelector('[data-equals]')
@@ -95,8 +96,8 @@ const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
-numberButtons.forEach(button => {
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement) /*membuat object*/
+numberButtons.forEach(button => { /*menampilkan number di display ketika user menglik numberButton*/ 
     button.addEventListener('click',() => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
